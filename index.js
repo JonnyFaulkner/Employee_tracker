@@ -83,7 +83,6 @@ function Manager() {
                     ])
                         .then(data => {
                             const url = 'http://localhost:3001/api/employee'
-                            console.log(data.role)
                             axios.post(url, {
                                 first_name: data.first_name,
                                 last_name: data.last_name,
@@ -97,7 +96,7 @@ function Manager() {
                                 .catch(err => {
                                     console.log(err)
                                 })
-                        })
+                        });
                 } else if (user_options === 'Remove employee.') {
                     inquirer.prompt(
                         {
@@ -124,7 +123,7 @@ function Manager() {
                             .catch(err => {
                                 console.log(err)
                             })
-                    })
+                    });
                 } else if (user_options === 'Update employee role.') {
                     inquirer.prompt([
                         {
@@ -168,7 +167,7 @@ function Manager() {
                                 })
                         })
                 }
-            })
+            });
     }
     userPrompt()
 }

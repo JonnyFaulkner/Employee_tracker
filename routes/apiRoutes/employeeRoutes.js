@@ -17,15 +17,14 @@ router.get('/employees', (req, res) => {
     })
 });
 
-router.post('/employee', ({ body }, res) => {
+router.post('/employee', (req, res) => {
     const sql = `INSERT INTO employee (first_name, last_name, role_id, manager_id)
         VALUES (?,?,?,?)`;
-    const params = [body.first_name, body.last_name, body.role_id, body.manager_id];
+    const params = [req.body.first_name, req.body.last_name, req.body.role_id, req.body.manager_id];
 
-    db.query(sql, params, (err, result) => {
+    db.query(sql, params, (err, res) => {
         if (err) {
-            res.status(400).json({ error: err.message });
-            return;
+            res.status(400).json(err)
         }
         res.json({
             message: 'success',
